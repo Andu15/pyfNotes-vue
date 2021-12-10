@@ -1,13 +1,15 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="nav" >
+    <router-link to="/" class="hidden">INICIO</router-link> 
+    <router-link to="/login" class="hidden">INGRESO</router-link> 
+    <router-link to="/register" class="hidden">REGISTRO</router-link> 
+    <router-link to="/notes" class="hidden">NOTAS</router-link> 
+      <router-view/>
   </div>
-  <router-view/>
 </template>
 
 <style>
-#app {
+/* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,5 +28,6 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 </style>
+
