@@ -14,7 +14,7 @@
       <img class="h-65" src="../assets/Phineas_100.png"/>
       <div class="text-center my-auto text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-6xl 2xl:text-8xl">
         <p class="text-white">¿Aun no tienes una cuenta?</p>
-        <a class="ref ref-orange sm:text-lg md:text-2xl lg:text-4xl xl:text-5xl">Registrate Aquí</a>
+        <a class="ref ref-orange sm:text-lg md:text-2xl lg:text-4xl xl:text-5xl" href="/register">Registrate Aquí</a>
       </div>
     </div>
   </section>
