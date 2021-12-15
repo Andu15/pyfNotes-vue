@@ -15,7 +15,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
   },
   {
     path: '/register',
@@ -23,7 +23,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Register.vue')
+    component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue')
   },
   {
     path: '/notes',
@@ -31,7 +31,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/NotePage.vue')
+    component: () => import(/* webpackChunkName: "notes" */ '../views/NotePage.vue')
   },
   {
     path: '/:pathMatch(.*)*',
@@ -39,13 +39,13 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/NotFound.vue')
+    component: () => import(/* webpackChunkName: "other" */ '../views/NotFound.vue')
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
 })
 
 router.beforeEach((to, from, next) => {

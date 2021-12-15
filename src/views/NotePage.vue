@@ -23,11 +23,11 @@
 </template>
 
 <script>
-  import { onBeforeMount } from 'vue';
-  import { useRouter } from 'vue-router';
+  // import { onBeforeMount } from 'vue';
+  // import { useRouter } from 'vue-router';
   import { auth } from '../firebase/firebaseConfig';
   import {
-  onAuthStateChanged,
+  // onAuthStateChanged,
   signOut
   } from "firebase/auth";
   import Cards from '../components/Cards.vue';
@@ -77,7 +77,6 @@
   },
   methods:{
     deleteTodo(id){
-      // console.log(id)
       this.todos = this.todos.filter((todo) => todo.id !== id);
       this.copyTodos = [...this.todos];
     },
@@ -90,22 +89,22 @@
      }
   },
   setup(){
-    const router = useRouter();
+    // const router = useRouter();
 
-    onBeforeMount(()=>{
-    //observable de firebase
-      onAuthStateChanged(auth, (user) => {
-        if (!user) {
-          router.replace('/login');
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/firebase.User
-          // const uid = user.uid;
-          // ...
-        } else {
-          router.go('/notes');
-        }
-      });
-    })
+    // onBeforeMount(()=>{
+    // //observable de firebase
+    //   onAuthStateChanged(auth, (user) => {
+    //     if (!user) {
+    //       router.replace('/login');
+    //       // User is signed in, see docs for a list of available properties
+    //       // https://firebase.google.com/docs/reference/js/firebase.User
+    //       // const uid = user.uid;
+    //       // ...
+    //     } else {
+    //       router.go('/notes');
+    //     }
+    //   });
+    // })
   }
   }
 </script>
