@@ -1,13 +1,12 @@
 <template>
-  <div class="todo" v-bind:class="{completed: todo.completed}">
+  <div class="todo">
     <div class="todo-body" >
-      <input type="checkbox" 
-        v-on:change="checkTodo">
-      {{todo.title}}
+      <input type="checkbox">
+      {{todo.text}}
     </div>
     <div class="todo-actions grid grid-cols-2">
       <button class="btn-action" @click="$emit()"><img class="todo-btn-edit" src="https://img.icons8.com/dusk/64/000000/edit--v1.png"/></button>
-      <button class="btn-action" @click="$emit('delete-todo', todo.id)"><img class="todo-btn-delete" src="https://img.icons8.com/stickers/100/000000/delete-forever.png"/></button>
+      <button class="btn-action"><img class="todo-btn-delete" src="https://img.icons8.com/stickers/100/000000/delete-forever.png"/></button>
     </div>
   </div>
 </template>

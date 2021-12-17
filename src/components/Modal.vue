@@ -59,6 +59,7 @@ export default {
         userId: user.uid,
         author: user.displayName,
         text: this.textToDo,
+        completed: false,
         timestamp: serverTimestamp(),
         });
         this.error = '';
