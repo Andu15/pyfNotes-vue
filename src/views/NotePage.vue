@@ -45,39 +45,39 @@
   },
   data(){
     return{
-      todos: [
-        {
-          id: 0,
-          title: 'comprar la cena',
-          completed: false
-        },
-        {
-          id: 1,
-          title: 'sacar a pasear al perro',
-          completed: true
-        },
-        {
-          id: 2,
-          title: 'jugar Xbox',
-          completed: false
-        },
-        {
-          id: 3,
-          title: 'bañar al gato',
-          completed: true
-        },
-        {
-          id: 4,
-          title: 'salir de compras',
-          completed: false
-        }
-      ],
-      copyTodos: [],
+      // todos: [
+      //   {
+      //     id: 0,
+      //     title: 'comprar la cena',
+      //     completed: false
+      //   },
+      //   {
+      //     id: 1,
+      //     title: 'sacar a pasear al perro',
+      //     completed: true
+      //   },
+      //   {
+      //     id: 2,
+      //     title: 'jugar Xbox',
+      //     completed: false
+      //   },
+      //   {
+      //     id: 3,
+      //     title: 'bañar al gato',
+      //     completed: true
+      //   },
+      //   {
+      //     id: 4,
+      //     title: 'salir de compras',
+      //     completed: false
+      //   }
+      // ],
+      // copyTodos: [],
     }
   },
-  created(){
-    this.copyTodos = [...this.todos]
-  },
+  // created(){
+  //   this.copyTodos = [...this.todos]
+  // },
   methods:{
     deleteTodo(id){
       this.todos = this.todos.filter((todo) => todo.id !== id);
