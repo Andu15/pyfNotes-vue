@@ -114,7 +114,7 @@
 <script>
 import NProgress from "nprogress";
 import swal from "sweetalert";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 import { auth } from "../firebase/firebaseConfig";
 
@@ -131,11 +131,12 @@ export default {
   methods: {
     register(email, password) {
       createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          localStorage.setItem("userName", this.name);
-          localStorage.setItem("favCharacter", this.select);
-          localStorage.setItem("userId", user.uid);
+        .then(() => {
+          // GUARDAR DATOS DE USUARIO EN EL CURRENTUSER
+          updateProfile(auth.currentUser, {
+            displayName: this.name,
+            photoURL: this.select,
+          });
           swal("! Registrado !", "Ya puedes iniciar sesión", "success");
           this.name = "";
           this.email = "";

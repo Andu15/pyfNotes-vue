@@ -1,5 +1,5 @@
 <template>
-  <section class="">
+  <section class="modal">
     <div class="grid grid-cols-2">
       <img class="md:w-40" src="../assets/pyfLogo.png"/>
       <p class="text-right text-white mr-4 text-xl sm:text-4xl md:7xl my-auto font-semibold">NOTAS</p>
@@ -16,22 +16,25 @@
     </div>
     <div class="grid grid-cols-2">
       <a @click="signout" class="Logout">Cerrar Sesión</a>
-      <button class="CreateTodoButton">+</button>
+      <button type="button" @click="toggleModal" class="CreateTodoButton">+</button>
     </div>
-    <Modal />
+    <Modal :modalActive="modalActive" @close="toggleModal" />
   </section>
 </template>
 
+<style scoped>
+
+</style>
+
 <script>
-  // import { onBeforeMount } from 'vue';
-  // import { useRouter } from 'vue-router';
-  import { auth } from '../firebase/firebaseConfig';
   import {
-  // onAuthStateChanged,
   signOut
   } from "firebase/auth";
+
+  import { auth } from '../firebase/firebaseConfig';
   import Cards from '../components/Cards.vue';
   import Modal from '../components/Modal.vue';
+  import { ref } from '@vue/reactivity';
   
 
   export default {
@@ -69,7 +72,7 @@
           completed: false
         }
       ],
-      copyTodos: []
+      copyTodos: [],
     }
   },
   created(){
@@ -89,22 +92,11 @@
      }
   },
   setup(){
-    // const router = useRouter();
-
-    // onBeforeMount(()=>{
-    // //observable de firebase
-    //   onAuthStateChanged(auth, (user) => {
-    //     if (!user) {
-    //       router.replace('/login');
-    //       // User is signed in, see docs for a list of available properties
-    //       // https://firebase.google.com/docs/reference/js/firebase.User
-    //       // const uid = user.uid;
-    //       // ...
-    //     } else {
-    //       router.go('/notes');
-    //     }
-    //   });
-    // })
+    const modalActive = ref(false);
+    const toggleModal = () => {
+      modalActive.value = !modalActive.value;
+    }
+    return { modalActive, toggleModal };
   }
-  }
+}
 </script>
