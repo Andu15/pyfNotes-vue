@@ -5,13 +5,13 @@
       <p class="text-right text-white mr-4 text-xl sm:text-4xl md:7xl my-auto font-semibold">NOTAS</p>
     </div>
     <div class="grid grid-cols-1 my-6">
-      <h1 class="text-glowingOrange text-center mb-2">Hola, !</h1>
+      <h1 class="text-glowingOrange text-center mb-2 font-semibold">Hola, {{userName}}!</h1>
       <p class="text-white text-center mb-4">Actualmente tienes {{this.todos.length}} notas creadas</p>
-      <input class="text-white w-80 m-auto rounded-2xl px-4 lg:px-8 py-2 lg:py-4" type="search" placeholder="🔍 Busca una nota"/>
+      <input class="w-80 m-auto rounded-2xl px-4 lg:px-8 py-2 lg:py-4" type="search" placeholder="🔍 Busca una nota"/>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 ">
       <div v-for="(todo, index) in copyTodos" :key="index">
-        <Cards v-bind:todo="todo"/>
+        <Cards v-bind:todo="todo" v-on:delete-todo="deleteTodo"/>
       </div>
     </div>
     <div class="grid grid-cols-2">
@@ -27,7 +27,7 @@
   import {
   signOut
   } from "firebase/auth";
-  import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+  import { collection, getDocs, doc, deleteDoc, query, orderBy, onSnapshot } from "firebase/firestore";
 
   import Cards from '../components/Cards.vue';
   import Modal from '../components/Modal.vue';
@@ -37,22 +37,19 @@
     name: 'NotePage',
     components: {
     Cards,
-    Modal
+    Modal,
   },
   data(){
     return{
       todos: [],
       copyTodos: [],
+      userName: '',
     }
   },
   created(){
     this.copyTodos = this.todos;
   },
   methods:{
-    deleteTodo(id){
-      this.todos = this.todos.filter((todo) => todo.id !== id);
-      this.copyTodos = [...this.todos];
-    },
     signout () {
       signOut(auth).then(() => {
         console.log('¡Sesión cerrada! Inicia sesión.');
@@ -61,6 +58,17 @@
       });
      },
     async getToDo () {
+      const querySnapshot = await getDocs(collection(db, "notes"));
+      querySnapshot.forEach((doc) => {
+        this.todos.push({id: doc.id, ...doc.data()});
+      });
+    },
+    async deleteTodo(id){
+      // this.todos = this.todos.filter((todo) => todo.id !== id);
+      // this.copyTodos = [...this.todos];
+      await deleteDoc(doc(db, "notes", id));
+    },
+    async getOnSnapshot () {
       const getCollection = await collection(db, 'notes');
       const q = await query(getCollection, orderBy("timestamp", "desc"));
       onSnapshot(q, (snapshot) => {
@@ -68,10 +76,17 @@
           this.todos.push({id: doc.id, ...doc.data()});
         });
       });
+    },
+    async getNameUser () {
+      const user = await auth.currentUser;
+      this.userName = user.displayName;
     }
   },
   mounted() {
       this.getToDo();
+      this.getNameUser();
+      // console.log(auth.currentUser.displayName);
+      // this.getOnSnapshot();
     },
   setup(){
     const modalActive = ref(false);
