@@ -1,5 +1,4 @@
 # PYFNOTES <img src="./src/assets/pyfLogo.png" alt="logo de ohineas y ferb" height="20"/>
-<!-- ![Image text](./src/assets/pyfLogo.png) -->
 
 ## Indice  
 - [PYFNOTES <img src="./src/assets/pyfLogo.png" alt="logo de ohineas y ferb" height="20"/>](#pyfnotes-)
