@@ -49,6 +49,7 @@ Basado en el famoso dibujo de @Disney `Phineas y Ferb` he creado una aplicación
 - [Router](https://next.router.vuejs.org/guide/)
 - [Clases y Estilos](https://es.vuejs.org/v2/guide/class-and-style.html)
 - [Gestión de Estado](https://es.vuejs.org/v2/guide/state-management.html#Gestion-de-estado-simple-desde-cero)
+- [Deploy in gh-pages](https://www.neoguias.com/como-publicar-aplicacion-vue-github-pages/)
 
 ### Autor
 Andrea Blanco
