@@ -7,9 +7,9 @@
       {{todo.text}}
       <EditTodo v-bind:id="todo.id" v-if="show" @closeNewText="toggleShow"/>
     </div>
-    <div class="todo-actions grid grid-cols-2">
-      <button class="btn-action" @click="toggleShow"><img class="todo-btn-edit" src="https://img.icons8.com/dusk/64/000000/edit--v1.png"/></button>
-      <button class="btn-action" @click="$emit('delete-todo', todo.id)"><img class="todo-btn-delete" src="https://img.icons8.com/stickers/100/000000/delete-forever.png"/></button>
+    <div class="grid grid-cols-2">
+      <button class="ml-4 my-4 min-h-fit" @click="toggleShow"><img class="todo-btn-edit" src="https://img.icons8.com/dusk/64/000000/edit--v1.png"/></button>
+      <button class="mr-4 my-4 min-h-fit" @click="$emit('delete-todo', todo.id)"><img class="todo-btn-delete" src="https://img.icons8.com/stickers/100/000000/delete-forever.png"/></button>
     </div>
   </div>
 </template>

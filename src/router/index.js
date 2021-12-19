@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
 import NProgress from 'nprogress';
+// import { onAuthStateChanged } from "firebase/auth";
+
+import Home from '../views/Home.vue';
 import 'nprogress/nprogress.css';
+import { auth } from '../firebase/firebaseConfig';
 
 const routes = [
   {
@@ -31,8 +34,11 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "notes" */ '../views/NotePage.vue')
-  },
+    component: () => import(/* webpackChunkName: "notes" */ '../views/NotePage.vue'),
+    meta: {
+      authenticated: true,
+    }
+  }, 
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
@@ -50,9 +56,18 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // `to` and `from` are both route objects
-  console.log(to, from);
   NProgress.start();
-  next();
+  // escuchador de eventos
+  let user = auth.currentUser;
+  let authorization = to.matched.some(record => record.meta.authenticated)
+  if(authorization && !user){
+    next('/login');
+  }
+  else if(!authorization && user){
+    next('/notes');
+  } else {
+    next();
+  }
 })
 
 export default router

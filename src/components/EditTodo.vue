@@ -1,11 +1,15 @@
 <template>
-  <div class="edit-section">
-    <textarea name="textarea" rows="3" cols="30" placeholder="Escribe aquí..." v-model="newText"/>
-    <div>
-      <button type="button" @click="updateToDo(id)">Aceptar</button>
+  <div class="edit-section px-7 py-3">
+    <textarea name="textarea" rows="3" cols="25" placeholder="Escribe aquí..." v-model="newText"/>
+    <div align="right">
+      <button type="button" @click="updateToDo(id)" class="rounded bg-darkPurple p-2 text-white hover:bg-indigo-600">OK</button>
     </div>
   </div>
 </template>
+
+<style scoped>
+
+</style>
 
 <script>
 import { doc, updateDoc } from "firebase/firestore";
@@ -36,6 +40,7 @@ export default {
       }
       this.newText = '';
       this.$emit('closeNewText');
+      window.location.reload(true);
     }
   }
 }

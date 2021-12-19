@@ -65,6 +65,7 @@ export default {
         this.error = '';
         this. textToDo = '';
         this.$emit('close');
+        window.location.reload(true);
       } else {
         this.error = 'Debes escribir algún texto';
       }

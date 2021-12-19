@@ -124,7 +124,8 @@ export default {
           const user = userCredential.user;
           console.log(user);
           swal("! Bien !", "Ya te encuentras logueado", "success");
-          this.$router.push("/notes");
+          this.$router.replace("notes");
+          window.location.reload(true);
         })
         .catch((error) => {
           const errorCode = error.code;
